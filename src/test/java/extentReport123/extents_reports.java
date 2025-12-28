@@ -13,32 +13,29 @@ public class extents_reports {
 	static ExtentReports extentreport;
 	
 	@BeforeTest
-	public void browser() {
+	public void browser() 
+	{
          WebDriver driver=new ChromeDriver();
 		
 		 spartReport=new ExtentSparkReporter("./target/report/shaila.html");
 		 extentreport=new ExtentReports();
 		
 		extentreport.attachReporter(spartReport);
-		
-		
-		
-		driver.get("https://www.youtube.com/watch?v=W9ekdTm65Jc");
-		
-		
+	
+		driver.get("https://www.youtube.com/watch?v=W9ekdTm65Jc");		
 	}
 	
 	@Test
 	public void test1() {
-		extentreport.createTest("repoetName1");
+		extentreport.createTest("subhash");
 		
 		System.out.println("hi");
 		extentreport.flush();
 	}
 	@Test
 	public void test2() {
-		extentreport.createTest("repoetName12");
-		
+		extentreport.createTest("shailaja1").assignAuthor("Shailaja").assignCategory("Smoke").assignDevice("Chrome 139");
+	
 		System.out.println("hi");
 		extentreport.flush();
 	}

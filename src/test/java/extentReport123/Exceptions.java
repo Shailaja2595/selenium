@@ -8,9 +8,11 @@ public class Exceptions
 
 	public static void main(String[] args)
 	{
-	
-		ExtentReports extentReports= new ExtentReports();
 		ExtentSparkReporter sparkReports=new ExtentSparkReporter("./target/Exception/exception .html");
+		
+		
+		ExtentReports extentReports= new ExtentReports();
+		
 		extentReports.attachReporter(sparkReports);
 		
 		extentReports.createTest("Test 1").pass(" This is pass ");

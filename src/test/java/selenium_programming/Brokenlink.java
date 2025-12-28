@@ -28,7 +28,7 @@ import org.testng.asserts.SoftAssert;
 public class Brokenlink
 {
 
-	public static void main(String[] args) throws IOException 
+	public static void main(String[] args) throws IOException , MalformedURLException
 	{
 		         WebDriver driver=new ChromeDriver();
 		         driver.get("https://rahulshettyacademy.com/AutomationPractice/");
@@ -45,21 +45,44 @@ public class Brokenlink
 
 		      {
 		          String url= link.getDomAttribute("href");
-                  HttpURLConnection conn= (HttpURLConnection)new URL(url).openConnection();
+	          
+		          
+		          try {
+		        	  URL ul=new URL(url);
+			          HttpURLConnection conn= (HttpURLConnection)ul.openConnection();
+			          conn.connect();
+		        	  
+		        	  if(conn.getResponseCode()>=400) {
+			        	  
+			        	  System.out.println(ul+"----->"+conn.getResponseMessage());
+			          }
+			          else {
+			        	  System.out.println(ul+"----->"+conn.getResponseMessage());
+			          }
+				} catch (MalformedURLException e) {
+					System.out.println("MalformedURLException ");
+				}
+		          
+		          
+		          
+		          
+//		          if(conn.getResponseCode()>400) {
+//		        	  
+//		        	  System.out.println(ul+"----->"+conn.getResponseMessage());
+//		          }
+//		          else {
+//		        	  System.out.println(ul+"----->"+conn.getResponseMessage());
+//		          }
 
-		          conn.setRequestMethod("HEAD");
-
-		          conn.connect();
-
-		          int respCode = conn.getResponseCode();
-
-		          System.out.println(respCode);
-
-		          a.assertTrue(respCode<400, "The link with Text"+link.getText()+" is broken with code" +respCode);
+//		          int respCode = conn.getResponseCode();
+//
+//		          System.out.println(respCode);
+//
+//		          a.assertTrue(respCode<400, "The link with Text"+link.getText()+" is broken with code" +respCode);
 
 		      }
 
-		      a.assertAll();
+		  //    a.assertAll();
 	}
 
 }

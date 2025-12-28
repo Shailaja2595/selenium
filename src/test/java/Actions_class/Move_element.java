@@ -27,9 +27,9 @@ public class Move_element {
           
          Thread.sleep(5000);
           
-        WebElement move = driver.findElement(By.xpath("//div[text()='Jobs']"));
-        Thread.sleep(5000);
-         Actions act=new Actions(driver);
+          WebElement move = driver.findElement(By.xpath("//div[text()='Jobs']"));
+         Thread.sleep(5000);
+          Actions act=new Actions(driver);
           act.moveToElement(move).build().perform();
           
           move.click();

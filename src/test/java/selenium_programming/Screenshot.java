@@ -1,7 +1,10 @@
 package selenium_programming;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,7 +18,12 @@ public class Screenshot
 	public static void main(String[] args) throws IOException, InterruptedException
 	{
 		WebDriver driver= new ChromeDriver ();
-		driver.manage().window().maximize();
+	
+     	driver.manage().window().maximize();
+//		driver.manage().window().fullscreen();
+		
+		
+		
 		driver.get("https://www.myntra.com/");
 		Thread.sleep(3000);
 		
@@ -26,6 +34,15 @@ public class Screenshot
         
         FileHandler.copy(f, f1);
         driver.quit();
+        
+        
+        
+//        File src = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//        FileUtils.copyFile(src, new File("screenshot.png"));
+
+        
+        
+        
 	}
 
 }
