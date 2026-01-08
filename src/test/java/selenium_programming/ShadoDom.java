@@ -1,48 +1,55 @@
 package selenium_programming;
 
-import static org.testng.Assert.ARRAY_MISMATCH_TEMPLATE;
-
-import org.jspecify.annotations.Nullable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-public class ShadoDom {
+public class ShadoDom 
+{
 	
 	static WebDriver driver;
 	
-	public static void main(String[] args) {
-		//ShadowElement();
-	//	NestedShadowElement();
-		MultinestedShadowElement();
+	@BeforeMethod
+	public void seup()
+	{
+		driver=new ChromeDriver();
+		driver.manage().window().maximize();
+	}
+		
+	@Test
+	public void BookApp()
+	{
+		
+     driver.get("https://books-pwakit.appspot.com/");
+     
+    SearchContext host = driver.findElement(By.cssSelector("book-app[apptitle='BOOKS']")).getShadowRoot();
+    host.findElement(By.id("input")).sendKeys("shailaja");
+     
 	}
 	
-	public static void ShadowElement() {
-		
-		driver=new ChromeDriver();
-		
-		driver.get("https://dev.automationtesting.in/shadow-dom");
-		
-		SearchContext shadowroot = driver.findElement(By.cssSelector("div#shadow-root")).getShadowRoot();
-		
-	System.out.println(shadowroot.findElement(By.cssSelector("span#shadow-element")).getText());	
-	 
+	@Test(enabled=false)
+	public  void ShadowElement() 
+	{	
+		driver.get("https://dev.automationtesting.in/shadow-dom");	
+		SearchContext shadowroot = driver.findElement(By.cssSelector("div#shadow-root")).getShadowRoot();	
+	    System.out.println(shadowroot.findElement(By.cssSelector("span#shadow-element")).getText());	 
 	}
 
-	public static void NestedShadowElement() {
-		driver = new ChromeDriver();
-
+	@Test(enabled=false)
+	public  void NestedShadowElement() {
+		
 		driver.get("https://dev.automationtesting.in/shadow-dom");
 		SearchContext shadowroot = driver.findElement(By.cssSelector("div#shadow-root")).getShadowRoot();
 		SearchContext NestedShadowElement = shadowroot.findElement(By.cssSelector("inner-shadow-dom#inner-shadow-dom")).getShadowRoot();
-	System.out.println(NestedShadowElement.findElement(By.cssSelector("span#nested-shadow-element")).getText());	
+	    System.out.println(NestedShadowElement.findElement(By.cssSelector("span#nested-shadow-element")).getText());	
 	}
 	
-	public static void MultinestedShadowElement() {
-		driver = new ChromeDriver();
+	@Test(enabled=false)
+	public  void MultinestedShadowElement() {
 
 		driver.get("https://dev.automationtesting.in/shadow-dom");
 		SearchContext shadowroot = driver.findElement(By.cssSelector("div#shadow-root")).getShadowRoot();
